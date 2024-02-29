@@ -18,6 +18,16 @@ try {
 }
 });
 
+app.get("/edit/:id", async(req,res)=>{
+
+    try {
+        const response = await axios.get(API_URL+"/todo/"+req.params.id);
+        res.render()
+    } catch (error) {
+        
+    }
+});
+
 app.listen(port,()=>{
 console.log("Running on port " + port);
 });

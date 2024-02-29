@@ -21,6 +21,8 @@
                     <p>
                         <%= todo.todoDescription %>
                     </p>
+                    <a class="edit" href="/edit/<%= todo.id %>">Edit</a>
+                    <a class="delete" href="/delete/<%= todo.id %>">Delete</a>
                 </li>
                 <% }) %>
                     <% } %>
