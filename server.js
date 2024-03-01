@@ -22,7 +22,10 @@ app.get("/edit/:id", async(req,res)=>{
 
     try {
         const response = await axios.get(API_URL+"/todo/"+req.params.id);
-        res.render()
+        res.render("edit.ejs",
+        {
+            todo: response.data
+        })
     } catch (error) {
         
     }

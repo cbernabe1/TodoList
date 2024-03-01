@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 const app = express();
 const port = 4000;
 
-var todo = [
+var todos = [
     {
         id: 1,
         todoName: "The Rise of Decentralized Finance",
@@ -14,7 +14,13 @@ var todo = [
 ]
 
 app.get("/todo",(req,res)=>{
-res.json(todo);
+res.json(todos);
+});
+
+app.get("/todo/:id",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const findTodo = todos.find((todo) => todo.id === id);
+    res.json(findTodo);
 });
 
 
