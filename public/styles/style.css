@@ -34,3 +34,7 @@ body{
     border-radius: 10px;
     background-color: white;
 }
+
+li{
+    list-style: none;
+}

@@ -10,21 +10,21 @@
 
 <body>
     <div class="container">
-        <h1>Edit Todo</h1>
+        <h1><%= heading %></h1>
         <% if(locals.todo) {%>
             <form id="editForm" method="post" action="/api/todo/:id">
                 <input type="text" name="title" value="<%= todo.todoName %>">
                 <textarea name="content" rows="10"><%= todo.todoDescription %></textarea>
-                    <button class="updateButton" type="submit">Update</button>
+                <button class="updateButton" type="submit">Update</button>
             </form>
             <% } else{%>
-                <form id="newForm" method="post" action="/api/todos">
+                <form id="newForm" method="post" action="/api/todo">
                     <input type="text" name="title" placeholder="Todo Name" required>
                     <textarea name="content" placeholder="Todo Description" required rows="10"></textarea>
-                        <button class="submitButton" type="submit">Submit</button>
+                    <button class="submitButton" type="submit">Submit</button>
                 </form>
                 <% } %>
-            <a class="exit" href="/">x</a>
+                    <a class="exit" href="/">x</a>
     </div>
 </body>
 
