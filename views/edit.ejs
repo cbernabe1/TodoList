@@ -12,15 +12,15 @@
     <div class="container">
         <h1><%= heading %></h1>
         <% if(locals.todo) {%>
-            <form id="editForm" method="post" action="/api/todo/:id">
-                <input type="text" name="title" value="<%= todo.todoName %>">
-                <textarea name="content" rows="10"><%= todo.todoDescription %></textarea>
+            <form id="editForm" method="post" action="/api/todo/<%= todo.id %>">
+                <input type="text" name="todoName" value="<%= todo.todoName %>">
+                <textarea name="todoDescription" rows="10"><%= todo.todoDescription %></textarea>
                 <button class="updateButton" type="submit">Update</button>
             </form>
             <% } else{%>
                 <form id="newForm" method="post" action="/api/todo">
-                    <input type="text" name="title" placeholder="Todo Name" required>
-                    <textarea name="content" placeholder="Todo Description" required rows="10"></textarea>
+                    <input type="text" name="todoName" placeholder="Todo Name" required>
+                    <textarea name="todoDescription" placeholder="Todo Description" required rows="10"></textarea>
                     <button class="submitButton" type="submit">Submit</button>
                 </form>
                 <% } %>

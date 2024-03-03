@@ -41,16 +41,35 @@ app.get("/new",(req,res)=>{
 });
 
 //add todo
-app.post("/api/todo",async(req,res)=>{
+app.post("/api/todo", async (req, res) => {
     try {
         console.log(req.body);
-        const response = await axios.post(API_URL+"/todo"+req.body);
+        const response = await axios.post(API_URL + "/todos", req.body);
         res.redirect("/");
     } catch (error) {
-        res.status(500).json({message: "Error creating the todo"});
+        console.log(error);
+       // res.status(500).json({message: "Error creating the todo"});     
     }
 });
 
+app.get("/delete/:id", async (req,res)=>{
+try {
+    const response = await axios.delete(API_URL+"/todo/"+req.params.id);
+    res.redirect("/");
+} catch (error) {
+    console.log(error);
+}
+
+app.post("/api/todo/:id", async (req,res)=>{
+    try {
+        const response = await axios.patch(API_URL+"/todos/"+req.params.id, req.body);
+        res.redirect("/");
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+});
 app.listen(port,()=>{
 console.log("Running on port " + port);
 });

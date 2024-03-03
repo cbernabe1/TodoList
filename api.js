@@ -5,7 +5,7 @@ const app = express();
 const port = 4000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
+var date = new Date().toJSON();
 var todos = [
     {
         id: 1,
@@ -16,8 +16,6 @@ var todos = [
 ]
 
 app.get("/todo",(req,res)=>{
-console.log("asdfasdfsad");
-
 res.json(todos);
 });
 
@@ -27,15 +25,41 @@ app.get("/todo/:id",(req,res)=>{
     res.json(findTodo);
 });
 
-app.post("/todo",(req,res)=>{    
+app.post("/todos",(req,res)=>{    
 const newTodo = {
     id: todos.length + 1,
-    todoName: req.body.title,
-    todoDescription: req.body.content,
-    todoDate: ""
+    todoName: req.body.todoName,
+    todoDescription: req.body.todoDescription,
+    todoDate: date
 };
 todos.push(newTodo);
 res.json(newTodo);
+});
+
+app.delete("/todo/:id", (req,res)=>{
+const id = parseInt(req.params.id);
+const findTodo = todos.findIndex((todo)=> todo.id === id);
+if(findTodo > -1){
+    todos.splice(findTodo,1);
+    res.sendStatus(200);
+}else{
+    res.
+    status(400).json({error: "Error deleting the todo"});
+}
+});
+
+app.patch("/todos/:id",(req,res)=>{
+    const id = parseInt(req.params.id);
+    const findTodo = todos.find((todo) => todo.id === id);
+    const updatedTodo = {
+        id: findTodo.id,
+        todoName: req.body.todoName || findTodo.todoName,
+        todoDescription: req.body.todoDescription || findTodo.todoDescription,
+        todoDate: date
+    }
+    const findIndex = todos.findIndex((todo) => todo.id === id);
+    todos[findIndex] = updatedTodo;
+    res.json(updatedTodo);
 });
 app.listen(port,()=>{
 console.log("Running on port " + port);

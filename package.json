@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"node api.js\" \"node backend.js\""
+    "start": "nodemon backend.js"
   },
   "author": "",
   "license": "ISC",
